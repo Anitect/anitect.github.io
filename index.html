@@ -6,8 +6,8 @@
         <link rel="icon" type="image/svg+xml" href="Logo_Transparent.svg" />
         <style>
             body {
-                background-color: #0a0f2c; /* Deep Navy Background */
-                color: #e5b80b; /* Gold Foreground */
+                background-color: #0a0f2c;
+                color: #e5b80b;
                 font-family: 'Poppins', 'Montserrat', 'Segoe UI', sans-serif;
                 display: flex;
                 flex-direction: column;
@@ -16,13 +16,15 @@
                 height: 100vh;
                 margin: 0;
                 text-align: center;
+                overflow: hidden;
+                position: relative;
             }
 
             img {
-                width: 200px; /* Logo size */
+                width: 200px;
                 height: auto;
                 margin-bottom: 1rem;
-                animation: pulse 2.5s infinite ease-in-out; /* Add breathing animation */
+                animation: pulse 2.5s infinite ease-in-out;
             }
 
             @keyframes pulse {
@@ -51,22 +53,91 @@
                 margin-top: 0.5rem;
             }
 
-            .construction {
-                font-size: 1.25rem;
-                color: #ffd700;
-                margin-top: 2rem;
-                opacity: 0.8;
+            /* Construction Tape Container */
+            .tape {
+                position: absolute;
+                top: 20px;
+                right: -200px;
+                width: 700px;
+                height: 80px;
+                transform: rotate(45deg);
+                overflow: hidden;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                border: 2px solid #0a0f2c;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Moving Striped Background */
+            .tape-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1400px;
+                height: 100%;
+                background: repeating-linear-gradient(
+                    45deg,
+                    #ffd700 0px,
+                    #ffd700 20px,
+                    #000000 20px,
+                    #000000 40px
+                );
+                background-size: 40px 40px;
+                animation: move-stripes 10s linear infinite;
+                z-index: 1;
+            }
+
+            @keyframes move-stripes {
+                0% {
+                    background-position: 0 0;
+                }
+                100% {
+                    background-position: 40px 0;
+                }
+            }
+
+            /* Center Black Text Bar */
+            .tape-bar {
+                position: absolute;
+                width: 100%;
+                height: 50%;
+                background-color: black;
+                z-index: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Static Text */
+            .tape-text {
+                position: relative;
+                z-index: 3;
+                font-weight: bold;
+                font-size: 1rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: #ffffff;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+                    1px 1px 0 #000;
+                white-space: nowrap;
+                transform: translateX(60px); /* << Small nudge to the right */
             }
         </style>
     </head>
     <body>
+        <div class="tape">
+            <div class="tape-bg"></div>
+            <div class="tape-bar">
+                <div class="tape-text">UNDER CONSTRUCTION!</div>
+            </div>
+        </div>
+
         <div>
             <img src="Logo_Transparent.svg" alt="Anitect Logo" />
             <h1>Welcome to Anitect</h1>
             <p>Building systems, games, and ideas.</p>
-            <div class="construction">
-                🚧 This website is under construction! 🚧
-            </div>
         </div>
     </body>
 </html>
